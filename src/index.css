@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.n-input {
+  @apply px-3 py-2 outline-none border border-gray-400/60 rounded;
+}
