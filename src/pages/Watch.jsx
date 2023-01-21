@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, usestat, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { checkAuth } from '../features/authSlice';
 import { userCekRoom, userExitRoom } from '../features/roomsSlice';
 import io from 'socket.io-client';
 // import ReactPlayer from 'react-player';
-import { Player, FullscreenToggle, ControlBar, Shortcut, BigPlayButton, ProgressControl, CurrentTimeDisplay, DurationDisplay } from 'video-react';
+import { Player, FullscreenToggle, ControlBar, Shortcut, BigPlayButton, ProgressControl, CurrentTimeDisplay, DurationDisplay, TimeDivider } from 'video-react';
 import 'video-react/dist/video-react.css'
 const socket = io('https://nontonkuy.fly.dev');
-// const socket = io('http://localhost:3000');
 
 function Watch() {
     const { roomId } = useParams();
@@ -89,7 +88,6 @@ function Watch() {
         }
     }, [currentTime, plyr, checkedRoom, isAuthenticated])
 
-
     const exitRoom = async (roomId) => {
         await dispatch(userExitRoom({ roomId, userId: user.user.id }));
         if (errorExit) {
@@ -151,10 +149,11 @@ function Watch() {
                         <Shortcut clickable={master} />
                         <ControlBar disableDefaultControls={!master}>
                             {/* <PlayToggle /> */}
-                            <FullscreenToggle key="fs" />
-                            <ProgressControl key="pc" />
                             <CurrentTimeDisplay key="ctd" />
                             <DurationDisplay key="dd" />
+                            <ProgressControl key="pc" />
+                            <TimeDivider key="td" />
+                            <FullscreenToggle key="fs" />
                         </ControlBar>
                     </Player>
                 </div>

@@ -11,7 +11,7 @@ import Watch from './pages/Watch';
 function App() {
 
   return (
-    <>
+    <div>
       <Router>
         <Routes>
           <Route path='/' element={<ListRooms />} />
@@ -20,7 +20,7 @@ function App() {
           <Route path='/watch/:roomId' element={<Watch />} />
         </Routes>
       </Router>
-    </>
+    </div>
   )
 }
 
